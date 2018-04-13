@@ -2,7 +2,7 @@
 #
 #   Script:          wxgen.py
 #   Author:          Brian Vanderwende
-#   Last Revised:    22:59, 12 Apr 2018
+#   Last Revised:    23:04, 12 Apr 2018
 #
 #   This code generates a fake weather forecast for Boulder, CO
 #
@@ -36,3 +36,5 @@ with open(fcst_path, 'w') as ffo:
         ffo.write("  High:      {:5.2f} deg C".format(gauss(avg_high, std_temp)))
         ffo.write("  Low:       {:5.2f} deg C".format(gauss(avg_low, std_temp)))
         ffo.write("  Precip:    {:5.2f} mm".format(precip))
+
+print("Forecast generated in {}".format(fcst_path))
