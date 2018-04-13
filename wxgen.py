@@ -2,7 +2,7 @@
 #
 #   Script:          wxgen.py
 #   Author:          Brian Vanderwende
-#   Last Revised:    15:01, 13 Apr 2018
+#   Last Revised:    15:33, 13 Apr 2018
 #
 #   This code generates a fake weather forecast for Boulder, CO
 #
@@ -57,8 +57,9 @@ if __name__ == "__main__":
                 p_chc   = csd["precip"]["days"] / 365.0
                 p_avg   = csd["precip"]["yamt"] / csd["precip"]["days"]
 
+                # If precip occurs, use folded normal distribution
                 if random() < p_chc:
-                    precip = gauss(p_avg, csd["precip"]["std"])
+                    precip = abs(gauss(p_avg, csd["precip"]["std"]))
 
                 ffo.write("\nDay {}".format(day + 1))
                 ffo.write("\n  High:      {:5.2f} deg C".format(high))
