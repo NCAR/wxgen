@@ -1,4 +1,4 @@
-{ "city": {
+{
     "name":     "Boulder",
     "state":    "CO",
     "high":     {
@@ -10,8 +10,8 @@
         "std":  4.5
     },
     "precip":   {
-        "avg":  525.0 / 65,
-        "std":  10,
-        "chc":  65.0 / 365
+        "yamt": 525.0,
+        "std":  10.0,
+        "days": 65.0
     }
-}}
+}

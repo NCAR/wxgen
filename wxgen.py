@@ -2,39 +2,63 @@
 #
 #   Script:          wxgen.py
 #   Author:          Brian Vanderwende
-#   Last Revised:    11:00, 13 Apr 2018
+#   Last Revised:    13:45, 13 Apr 2018
 #
 #   This code generates a fake weather forecast for Boulder, CO
 #
 
 # Libraries
+import json, sys
 from random import gauss, random
 
-# Define some statistics for Boulder, CO
-avg_high    = 18.5          # deg C
-avg_low     = 3.3           # deg C
-avg_precip  = 525.0 / 65    # mm
-chc_precip  = 65.0 / 365
-std_temp    = 4.5
-std_precip  = 10
-
-# Produce a forecast
-fcst_path   = "forecasts/boulder.txt"
+# User settings
+city_list   = ["boulder"]
+fcst_path   = "forecasts/{}.txt"
 num_days    = 7
 
-with open(fcst_path, 'w') as ffo:
-    ffo.write("Forecast for Boulder, CO\n")
+#
+## FUNCTION DEFINITIONS
+#
 
-    for day in range(num_days):
-        # Will rain/snow occur?
-        precip = 0.0
+def read_city_data(city_name):
+    try:
+        with open("cities/{}.json".format(city_name), 'r') as city_file:
+            city_data = json.load(city_file)
+    except IOError:
+        print("Error: no JSON file for city {}. Exiting...".format(city_name))
+        sys.exit(1)
 
-        if random() < chc_precip:
-            precip = gauss(avg_precip, std_precip)
+    return city_data
 
-        ffo.write("\nDay {}".format(day + 1))
-        ffo.write("\n  High:      {:5.2f} deg C".format(gauss(avg_high, std_temp)))
-        ffo.write("\n  Low:       {:5.2f} deg C".format(gauss(avg_low, std_temp)))
-        ffo.write("\n  Precip:    {:5.2f} mm\n".format(precip))
+#
+# MAIN PROGRAM
+#
 
-print("Forecast generated in {}".format(fcst_path))
+if __name__ == "__main__":
+    for city in city_list:
+        # Read settings and specify output file
+        csd         = read_city_data(city)
+        fcst_file   = fcst_path.format(city)
+
+        with open(fcst_file, 'w') as ffo:
+            ffo.write("Forecast for {}, {}\n".format(csd["name"], csd["state"]))
+
+            for day in range(num_days):
+                # Produce temperature forecasts
+                high    = gauss(csd["high"]["avg"], csd["high"]["std"])
+                low     = gauss(csd["low"]["avg"], csd["low"]["std"])
+
+                # Will rain/snow occur?
+                precip  = 0.0
+                p_chc   = csd["precip"]["days"] / 365.0
+                p_avg   = csd["precip"]["yamt"] / csd["precip"]["days"]
+
+                if random() < p_chc:
+                    precip = gauss(p_avg, csd["precip"]["std"])
+
+                ffo.write("\nDay {}".format(day + 1))
+                ffo.write("\n  High:      {:5.2f} deg C".format(high))
+                ffo.write("\n  Low:       {:5.2f} deg C".format(low))
+                ffo.write("\n  Precip:    {:5.2f} mm\n".format(precip))
+
+        print("Forecast generated in {}".format(fcst_file))
