@@ -1,0 +1,17 @@
+{
+    "name":     "Boulder",
+    "state":    "CO",
+    "high":     {
+        "avg":  18.5,
+        "std":  4.5
+    },
+    "low":      {
+        "avg":  3.3,
+        "std":  4.5
+    },
+    "precip":   {
+        "yamt": 525.0,
+        "std":  10.0,
+        "days": 65.0
+    }
+}

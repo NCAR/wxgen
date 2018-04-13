@@ -1,0 +1,17 @@
+{
+    "name":     "Philadelphia",
+    "state":    "PA",
+    "high":     {
+        "avg":  18.1,
+        "std":  2.2
+    },
+    "low":      {
+        "avg":  3.3,
+        "std":  2.2
+    },
+    "precip":   {
+        "yamt": 1053.0,
+        "std":  15.0,
+        "days": 120.0
+    }
+}
