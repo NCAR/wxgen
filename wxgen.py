@@ -2,7 +2,7 @@
 #
 #   Script:          wxgen.py
 #   Author:          Brian Vanderwende
-#   Last Revised:    14:06, 13 Apr 2018
+#   Last Revised:    15:01, 13 Apr 2018
 #
 #   This code generates a fake weather forecast for Boulder, CO
 #
@@ -10,6 +10,7 @@
 # Libraries
 import json, sys
 from random import gauss, random
+from datetime import datetime
 
 # User settings
 city_list   = ["boulder","philadelphia"]
@@ -35,6 +36,8 @@ def read_city_data(city_name):
 #
 
 if __name__ == "__main__":
+    gen_time = datetime.utcnow().strftime("%H%MZ - %d %b %Y")
+
     for city in city_list:
         # Read settings and specify output file
         csd         = read_city_data(city)
@@ -42,6 +45,7 @@ if __name__ == "__main__":
 
         with open(fcst_file, 'w') as ffo:
             ffo.write("Forecast for {}, {}\n".format(csd["name"], csd["state"]))
+            ffo.write("Generated at {}\n".format(gen_time))
 
             for day in range(num_days):
                 # Produce temperature forecasts
