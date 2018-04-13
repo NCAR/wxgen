@@ -24,3 +24,17 @@ Simply execute the script:
 ```
 ./wxgen.py
 ```
+
+The forecast will be written to a file in the "forecasts" directory:
+
+```
+Forecast for Boulder, CO
+
+Day 1
+  High:      12.33 deg C
+  Low:        9.56 deg C
+  Precip:     0.00 mm
+
+Day 2
+...
+```
