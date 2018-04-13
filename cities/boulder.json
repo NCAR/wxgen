@@ -1,0 +1,17 @@
+{ "city": {
+    "name":     "Boulder",
+    "state":    "CO",
+    "high":     {
+        "avg":  18.5,
+        "std":  4.5
+    },
+    "low":      {
+        "avg":  3.3,
+        "std":  4.5
+    },
+    "precip":   {
+        "avg":  525.0 / 65,
+        "std":  10,
+        "chc":  65.0 / 365
+    }
+}}
