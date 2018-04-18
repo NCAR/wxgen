@@ -13,7 +13,7 @@ from random import gauss, random
 from datetime import datetime
 
 # User settings
-city_list   = ["boulder","philadelphia"]
+city_list   = ["boulder","philadelphia","portland"]
 fcst_path   = "forecasts/{}.txt"
 num_days    = 7
 
