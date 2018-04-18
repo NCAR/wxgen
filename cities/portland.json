@@ -1,0 +1,17 @@
+{
+    "name":     "Portland",
+    "state":    "OR",
+    "high":     {
+        "avg":  54.5,
+        "std":  4.5
+    },
+    "low":      {
+        "avg":  3.3,
+        "std":  4.5
+    },
+    "precip":   {
+        "yamt": 36.0,
+        "std":  10.0,
+        "days": 300.0
+    }
+}
