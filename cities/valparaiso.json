@@ -1,0 +1,17 @@
+{
+    "name":     "Valparaiso, Chile",
+    "state":    "Chile",
+    "high":     {
+        "avg":  16.5,
+        "std":  3.5
+    },
+    "low":      {
+        "avg":  8.3,
+        "std":  4.5
+    },
+    "precip":   {
+        "yamt": 325.0,
+        "std":  10.0,
+        "days": 25.0
+    }
+}
